@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+	<link rel="stylesheet" href="style.css">
+	<script src="radio.js"></script>
+    <title>Hellas Radio</title>
+</head>
+<body>
+
+    <!-- Pasek menu -->
+    <div class="menu">
+        <a href="index.html" class="active">Ραδιόφωνο</a>
+<a href="#" id="changeLangBtn">Αλλαγή γλώσσας</a>
+<a href="gr.html">Επικοινωνί</a>
+    </div>
+	<div id="languageModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h2>Επιλέξτε γλώσσα</h2>
+    <ul>
+      <li><button onclick="selectLanguage('el')">Ελληνικά</button></li>
+      <li><button onclick="selectLanguage('en')">English</button></li>
+	  <li><button onclick="selectLanguage('pl')">Polski</button></li>
+    </ul>
+  </div>
+</div>
+
+    <!-- Główna zawartość -->
+    <div class="container">
+        <!-- Zmieniany dynamicznie nagłówek -->
+<h1 id="radioTitle">Επιλέξτε ραδιόφωνο&nbsp;</h1>
+
+        <div class="player">
+            <audio id="audioPlayer" controls>
+                <source id="audioSource" src="" type="audio/mpeg">
+             Το πρόγραμμα περιήγησής σας δεν υποστηρίζει την αναπαραγωγή ήχου.
+            </audio>
+        </div>
+
+        <!-- Ikony stacji radiowych w siatce 4x15 -->
+        <div class="radio-grid">
+            <!-- Każde z tych okienek to pole na logo stacji radiowej -->
+
+            <div class="radio-item" onclick="playRadio('https://kissfm.live24.gr/kissfmathens', 'Kiss FM')">
+                <img src="gr2.jpg" alt="Polskie Radio Chopin">
+            </div>
+            <div class="radio-item" onclick="playRadio('https://loveradio.live24.gr/loveradio-1000', 'Love Radio')">
+                <img src="gr3.png" alt="Polskie Radio Kierowców">
+            </div>
+            <div class="radio-item" onclick="playRadio('https://galaxy.live24.gr/galaxy9292', 'Galaxy FM ')">
+                <img src="gr1.png" alt="r">
+            </div>
+            <div class="radio-item" onclick="playRadio('https://n32a-eu.rcs.revma.com/4vr91u5r4a0uv?rj-ttl=5&rj-tok=AAABkhp7EYAAX7Jz52Y0PoLVKQ', 'Easy FM')">
+                <img src="gr6.jpg" alt="r">
+            </div>
+            <div class="radio-item" onclick="playRadio('https://az10.yesstreaming.net:8060/radio.mp3', 'Athens Rock')">
+                <img src="gr4.png" alt="r">
+            </div>
+            <div class="radio-item" onclick="playRadio('https://ice.onestreaming.com/athensparty', 'Athens Party')">
+                <img src="gr5.png" alt="r">
+            </div>
+    </div>
+		<script>
+  const modal = document.getElementById('languageModal');
+  const btn = document.getElementById('changeLangBtn');
+  const closeBtn = document.getElementById('closeModal');
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();  // zapobiega skokowi do góry strony z href="#"
+    modal.style.display = 'block';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  function selectLanguage(lang) {
+  let url = '';
+
+  switch(lang) {
+    case 'pl':
+      url = 'pl.';
+      break;
+    case 'el':
+      url = 'index.html';
+      break;
+    case 'en':
+      url = 'en/index.html';
+      break;
+    default:
+      url = 'index.html';
+  }
+
+  // przekierowanie na odpowiednią stronę
+  window.location.href = url;
+}
+</script>
+</body>
+</html>
